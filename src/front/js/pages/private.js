@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 
 
-export const Goodbye = () => {
+export const Private = () => {
    
     return (
 		<div className="text-center mt-5">
