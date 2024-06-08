@@ -3,11 +3,6 @@
     height: 100px;
 }
 
-/* .navbar-custom .navbar-brand,
-.navbar-custom .nav-link {
-    color: white;
-} */
-
 .navbar-custom .btn {
     color: white;
     border-color: #6e42c188;
@@ -22,11 +17,7 @@
     height: 130px;
 }
 
-h1 {
-    color: rgb(150, 119, 150);
-}
-
-h2 {
+h1, h2 {
     color: rgb(150, 119, 150);
 }
 
@@ -53,13 +44,4 @@ h4 {
 .btn-custom {
     background-color: rgb(150, 119, 150);
     color: white;
-}
-
-.offcanvas {
-    bottom: auto !important;
-}
-
-.navbarbutton {
-    width: 25px;
-    height: 25px;
 }

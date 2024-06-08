@@ -13,19 +13,6 @@ export const Navbar = () => {
 		navigate('/')
 	};
 
-	// useEffect(() => {
-	// 	if (store.vehicles.length === 0) {
-	// 		actions.getVehicles();
-	// 	}
-	// }, []);
-
-	// useEffect(() => {
-	// 	if (store.vehicles.length !== 0) {
-	// 		actions.myVehiclesInRent();
-	// 		actions.favorites();
-	// 	}
-	// }, [store.vehicles]);
-
 	return (
 		<nav className="navbar navbar-expand-lg navbar-light navbar-custom">
 			<div className="container-fluid mx-2">
@@ -37,7 +24,7 @@ export const Navbar = () => {
 				{token ?
 					<>
 						<Link to="/" className="text-decoration-none">
-							<div className="fs-5 text-black text-decoration-none" onClick={handleLogOut}><i className="fas fa-sign-out-alt pt-3 pe-3"></i>Cerrar sesión</div>
+							<div className="btn btn-outline me-2" onClick={handleLogOut}>Cerrar sesión</div>
 						</Link>
 					</>
 					: (

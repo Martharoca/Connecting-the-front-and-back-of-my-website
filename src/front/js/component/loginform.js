@@ -25,7 +25,7 @@ export const LoginForm = () => {
             async function handleSubmit() {
                 let isLogged = await actions.login(values.inputEmail, values.inputPassword)
                 if (isLogged) {
-                    navigate("/");
+                    navigate("/goodbye");
                 } else {
                     swal("Correo o contraseña incorrectos", "Por favor inténtelo de nuevo", "error")
                 }
