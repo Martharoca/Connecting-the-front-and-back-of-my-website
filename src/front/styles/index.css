@@ -1,3 +1,65 @@
-/* 
-    General Styles used on every website (Don't Repeat Yourself)
-*/
+.navbar-custom {
+    background-color: #6e42c144;
+    height: 100px;
+}
+
+/* .navbar-custom .navbar-brand,
+.navbar-custom .nav-link {
+    color: white;
+} */
+
+.navbar-custom .btn {
+    color: white;
+    border-color: #6e42c188;
+}
+
+.navbar-custom .btn:hover {
+    background-color: #e3dce2;
+    color: black;
+}
+
+.logo {
+    height: 130px;
+}
+
+h1 {
+    color: rgb(150, 119, 150);
+}
+
+h2 {
+    color: rgb(150, 119, 150);
+}
+
+h4 {
+    color: rgb(198, 153, 198);
+}
+
+.contactForm {
+    width: 360px;
+    height: 440px;
+    margin:auto;
+    margin-top: 80px;
+    margin-bottom: 80px;
+    background-color: #fff;
+    padding: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    justify-content: center;
+}
+
+.subtitle {
+    color: #b637b6;
+}
+
+.btn-custom {
+    background-color: rgb(150, 119, 150);
+    color: white;
+}
+
+.offcanvas {
+    bottom: auto !important;
+}
+
+.navbarbutton {
+    width: 25px;
+    height: 25px;
+}
