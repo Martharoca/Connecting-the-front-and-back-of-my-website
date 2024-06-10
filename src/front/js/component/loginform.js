@@ -25,11 +25,19 @@ export const LoginForm = () => {
             async function handleSubmit() {
                 let isLogged = await actions.login(values.inputEmail, values.inputPassword)
                 if (isLogged) {
-                    navigate("/private");
+                    const token = localStorage.getItem('token');
+                    if (token) {
+                        console.log("redirigiendo a /private");
+                    navigate("/private");  //meter aqui private
                 } else {
-                    swal("Correo o contraseña incorrectos", "Por favor inténtelo de nuevo", "error")
+                    console.error("no se pudo obtener el token");
+                    swal("Error", "No se pudo obtener el token", "error");
                 }
-            };
+                } else {
+                    console.error("correo o contraseña incorrectos");
+                    swal("Correo o contraseña incorrectos", "Por favor inténtelo de nuevo", "error")    
+            }
+        };
             handleSubmit()
         },
     });

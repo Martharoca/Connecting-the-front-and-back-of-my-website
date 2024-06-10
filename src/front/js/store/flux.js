@@ -62,14 +62,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 							password: password
 						})
 					});
-					let data = await response.json()
+					const data = await response.json()
 					if (response.status === 200) {
+						console.log("login exitoso:", data);
 						localStorage.setItem("token", data.access_token);
 						return true;
 					} else {
+						console.log("error en login:", data);
 						return false
 					}
 				} catch (error) {
+					console.error("error de red:", error)
 					return false;
 				}
 			},
@@ -103,27 +106,50 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return false;
 				}
 			},
-			isAuthenticated: (token) =>{
+			isAuthenticated: async (token) => {
 				const options = {
 					method: 'POST',
-					headers:{
+					headers: {
 						"Content-Type": "application/json",
-						"Authorization": 'Bearer '+token
+						"Authorization": 'Bearer ' + token
 					},
 					body: JSON.stringify({})
+				};
+				try {
+					const response = await fetch(process.env.BACKEND_URL + "/api/private", options);
+					if (response.status === 200) {
+						let data = await response.json();
+						setStore({ storeToken: true });
+						console.log('Data received:', data);
+					} else {
+						throw new Error("There was a problem in the login request");
+					}
+				} catch (error) {
+					console.log('Error:', error);
 				}
-				fetch(process.env.BACKEND_URL + "/api/private", options)
-				.then(response => {
-					if (response.status === 200){
-
-						response.json()}
-						else{
-							throw Error("There was a problem in the login request")
-						}
-					})
-				.then(response => setStore({storeToken: true}))
-				.catch(error => console.log('error', error));
-			},
+			},			
+			// isAuthenticated: (token) => {
+			// 	const options = {
+			// 		method: 'POST',
+			// 		headers: {
+			// 			"Content-Type": "application/json",
+			// 			"Authorization": 'Bearer ' + token
+			// 		},
+			// 		body: JSON.stringify({})
+			// 	};
+			// 	fetch(process.env.BACKEND_URL + "/api/private", options)
+			// 		.then(response => {
+			// 			if (response.status === 200) {
+			// 				return response.json();
+			// 			} else {
+			// 				throw new Error("There was a problem in the login request");
+			// 			}
+			// 		})
+			// 		.then(data => {
+			// 			setStore({ storeToken: true });
+			// 		})	
+			// 		.catch(error => console.log('error', error));
+			// },
 		}
 	};
 };
