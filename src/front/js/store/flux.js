@@ -120,7 +120,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						if (response.status === 200) {
 							return response.json();
 						} else {
-							throw new Error("There was a problem in the login request");
+							throw new Error("Hubo un problema en la solicitud de inicio de sesión");
 						}
 					})
 					.then(data => {

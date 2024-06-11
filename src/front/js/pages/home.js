@@ -9,7 +9,7 @@ export const Home = () => {
 	return (
 		<div className="text-center mt-5">
 			<h1>Hello World!!</h1>
-			<h4>This is a safe place where you can write code as much as you want</h4>
+			<h4>Este es un espacio seguro donde puedes codear todo lo que te apetezca</h4>
 			<p>
 				<img src={penguinImage} style={{width:350}} />
 			</p>
