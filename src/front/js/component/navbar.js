@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/index.css";
 
@@ -7,6 +7,7 @@ export const Navbar = () => {
 	const { store, actions } = useContext(Context)
 	const navigate = useNavigate();
 	const [token, setToken] = useState(localStorage.getItem("token"));
+	const location = useLocation();
 
 	const handleLogOut = () => {
 		actions.signOut();
@@ -33,12 +34,12 @@ export const Navbar = () => {
 						<img src="https://cdn.pixabay.com/photo/2022/03/08/18/30/penguin-7056315_1280.png" alt="Logo" className="logo d-inline-block align-top" />
 					</Link>
 				</div>
-				{token ? (
+				{location.pathname !== "/private" && (
 					<>
-						{/* <Link to="/" className="text-decoration-none"> */}
+				{token ? (
+						<Link to="/" className="text-decoration-none">
 							<div className="btn btn-outline me-2" onClick={handleLogOut}>Cerrar sesión</div>
-						{/* </Link> */}
-					</>
+						</Link>
 					) : (
 						<div>
 							<div className="offcanvas offcanvas-end" tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
@@ -56,8 +57,9 @@ export const Navbar = () => {
 								</div>
 							</div>
 						</div>
-					)
-				}
+					)}
+					</>
+				)}
 			</div>
 		</nav>
 	);

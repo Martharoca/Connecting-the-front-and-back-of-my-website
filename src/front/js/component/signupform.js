@@ -24,7 +24,7 @@ export const SignupForm = () => {
             async function handleSubmit() {
                 let isSignup = await actions.signup(values.inputEmail, values.inputPassword)
                 if (isSignup === "success") {
-                    swal("Registro con éxito", "Gracias por registrarte en esta web", "success")
+                    swal("Registro con éxito", "Gracias por registrarte en esta pequeña web", "success")
                     navigate("/login");
                 } else if (isSignup === "email_exist") {
                     swal("Este correo ya se encuentra registrado", "Por favor inténtelo con otro correo", "error")

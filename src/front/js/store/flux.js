@@ -105,29 +105,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 					return false;
 				}
-			},
-			isAuthenticated: async (token) => {
-				const options = {
-					method: 'POST',
-					headers: {
-						"Content-Type": "application/json",
-						"Authorization": 'Bearer ' + token
-					},
-					body: JSON.stringify({})
-				};
-				try {
-					const response = await fetch(process.env.BACKEND_URL + "/api/private", options);
-					if (response.status === 200) {
-						let data = await response.json();
-						setStore({ storeToken: true });
-						console.log('Data received:', data);
-					} else {
-						throw new Error("There was a problem in the login request");
-					}
-				} catch (error) {
-					console.log('Error:', error);
-				}
-			},			
+			},		
 			isAuthenticated: (token) => {
 				const options = {
 					method: 'POST',

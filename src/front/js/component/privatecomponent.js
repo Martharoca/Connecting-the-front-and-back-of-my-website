@@ -9,28 +9,31 @@ export const PrivateComponent = () => {
     const { store, actions } = useContext(Context);
     const token = localStorage.getItem('token');
     const navigate = useNavigate();
-    //console.log(token);
    
 
-    useEffect(()=>{
-        actions.isAuthenticated(token)
-        
-    }, [])
+    useEffect(() => {
+        if (token) {
+            actions.isAuthenticated(token);
+        } else {
+            navigate("/login");
+        }
+    }, [token, actions, navigate]);
+
     const signOut = () => {
         actions.signOut();
         localStorage.removeItem('token');
         navigate("/");
-    }
+    };
     if (store.storeToken) {
-        return (
-            <div className="container">
-                 <div className="card mb-3">
-                 <img src={penguinImage2} style={{width:350}} />
-                 <h4 className="card-title">¡Enhorabuena! Ahora puedes añadir más vistas como esta y probar por ti mism@</h4>
-                         <button type="submit" className="btn btn-primary" onClick={signOut}>Sign Out</button>
-                     </div>
-                 </div>
-     )
-
-}
-};
+        return <h4>Cargando...</h4>
+    }
+    return (
+        <div className="text-center mt-5">
+            <h2>¡¡ENHORABUENA!! Has conseguido entrar a una vista privada</h2>
+            <p>
+                <img src={penguinImage2} style={{ width: 350 }} />
+            </p>
+            <button type="submit" className="btn btn-custom btn-lg mb-5 fs-4" onClick={signOut}>Cerrar sesión</button>
+        </div>
+     );
+} 
