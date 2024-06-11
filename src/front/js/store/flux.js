@@ -128,28 +128,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log('Error:', error);
 				}
 			},			
-			// isAuthenticated: (token) => {
-			// 	const options = {
-			// 		method: 'POST',
-			// 		headers: {
-			// 			"Content-Type": "application/json",
-			// 			"Authorization": 'Bearer ' + token
-			// 		},
-			// 		body: JSON.stringify({})
-			// 	};
-			// 	fetch(process.env.BACKEND_URL + "/api/private", options)
-			// 		.then(response => {
-			// 			if (response.status === 200) {
-			// 				return response.json();
-			// 			} else {
-			// 				throw new Error("There was a problem in the login request");
-			// 			}
-			// 		})
-			// 		.then(data => {
-			// 			setStore({ storeToken: true });
-			// 		})	
-			// 		.catch(error => console.log('error', error));
-			// },
+			isAuthenticated: (token) => {
+				const options = {
+					method: 'POST',
+					headers: {
+						"Content-Type": "application/json",
+						"Authorization": 'Bearer ' + token
+					},
+					body: JSON.stringify({})
+				};
+				fetch(process.env.BACKEND_URL + "/api/private", options)
+					.then(response => {
+						if (response.status === 200) {
+							return response.json();
+						} else {
+							throw new Error("There was a problem in the login request");
+						}
+					})
+					.then(data => {
+						setStore({ storeToken: true });
+					})	
+					.catch(error => console.log('error', error));
+			},
 		}
 	};
 };

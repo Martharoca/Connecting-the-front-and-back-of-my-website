@@ -27,10 +27,9 @@ export const LoginForm = () => {
                 if (isLogged) {
                     const token = localStorage.getItem('token');
                     if (token) {
-                        console.log("redirigiendo a /private");
-                    navigate("/private");  //meter aqui private
+                        console.log("redirigiendo a /privatecomponent");
+                        navigate("/privatecomponent"); 
                 } else {
-                    console.error("no se pudo obtener el token");
                     swal("Error", "No se pudo obtener el token", "error");
                 }
                 } else {

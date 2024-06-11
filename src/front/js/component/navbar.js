@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/index.css";
@@ -6,12 +6,24 @@ import "../../styles/index.css";
 export const Navbar = () => {
 	const { store, actions } = useContext(Context)
 	const navigate = useNavigate();
-	const token = localStorage.getItem("token")
+	const [token, setToken] = useState(localStorage.getItem("token"));
 
 	const handleLogOut = () => {
 		actions.signOut();
+		localStorage.removeItem("token");
+		setToken(null);
 		navigate('/')
 	};
+
+	useEffect(() => {
+		const handleStorageChange = () => {
+			setToken(localStorage.getItem("token"));
+		};
+		window.addEventListener('storage', handleStorageChange);
+		return () => {
+			window.removeEventListener('storage', handleStorageChange);
+	};
+}, []);
 
 	return (
 		<nav className="navbar navbar-expand-lg navbar-light navbar-custom">
@@ -21,13 +33,13 @@ export const Navbar = () => {
 						<img src="https://cdn.pixabay.com/photo/2022/03/08/18/30/penguin-7056315_1280.png" alt="Logo" className="logo d-inline-block align-top" />
 					</Link>
 				</div>
-				{token ?
+				{token ? (
 					<>
-						<Link to="/" className="text-decoration-none">
+						{/* <Link to="/" className="text-decoration-none"> */}
 							<div className="btn btn-outline me-2" onClick={handleLogOut}>Cerrar sesión</div>
-						</Link>
+						{/* </Link> */}
 					</>
-					: (
+					) : (
 						<div>
 							<div className="offcanvas offcanvas-end" tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
 								<div className="offcanvas-body">

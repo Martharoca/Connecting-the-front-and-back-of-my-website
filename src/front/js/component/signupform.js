@@ -9,6 +9,7 @@ import * as Yup from 'yup';
 export const SignupForm = () => {
     const { actions } = useContext(Context);
     const navigate = useNavigate();
+    
     const formik = useFormik({
         initialValues: {
             inputEmail: '',
